@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+<h1>Posts</h1>
+  <% if user_signed_in? %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn-success" %>
+  <% end %>
+  <hr>
+  <% @posts.each do |post| %>
+  <div class="well col-lg-7">
+    <h3><%= post.title %></h3>
+    <h5>By <%= post.user.name %><br><%= time_ago_in_words post.created_at %> ago</h5>
+    <pre><%= post.content %></pre>
+    <% if current_user == post.user %>
+        <div class="btn-group pull-right" role="group"  >
+          <%= link_to 'Show', post, class: "btn btn-success " %>
+          <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info " %>
+          <%= link_to 'Delete', post, method: :delete, class: "btn btn-danger ", data: { confirm: 'Are you sure?' } %>
+        </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

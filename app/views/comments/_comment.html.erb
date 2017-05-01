@@ -1,0 +1,14 @@
+<p class="notice"><%= notice %></p>
+
+<h5>By <%= comment.user.name %><br><%= time_ago_in_words comment.created_at %> ago</h5>
+<pre><%= comment.content %></pre>
+<p>
+  <% if current_user == comment.user %>
+    <div class="btn-group pull-right" role="group"  >
+      <%= link_to 'Delete Comment', [comment.post, comment],
+              method: :delete, class: "btn btn-danger ",
+              data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</p>
+<hr>
